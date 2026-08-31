@@ -1065,8 +1065,10 @@ document.getElementById('btnDescargarHTML').addEventListener('click', downloadUp
 
 /* ============= Publicación automática a GitHub (opcional) =============
    El TOKEN se pide en el campo de la página (arriba) y se guarda solo en
-   sessionStorage de tu navegador — nunca queda escrito dentro del HTML,
+   localStorage de este navegador — nunca queda escrito dentro del HTML,
    así que no se publica accidentalmente al subir el archivo a GitHub.
+   Queda recordado en este navegador hasta que lo borres manualmente
+   (o borres los datos de navegación del sitio).
    Usa un "fine-grained personal access token" limitado SOLO a este
    repositorio y con permiso de únicamente "Contents: Read and write",
    con fecha de vencimiento. Créalo en: github.com/settings/tokens?type=beta
@@ -1079,9 +1081,9 @@ const GITHUB_CONFIG = {
 };
 
 const githubTokenInput = document.getElementById('githubTokenInput');
-githubTokenInput.value = sessionStorage.getItem('arrayanesGithubToken') || '';
+githubTokenInput.value = localStorage.getItem('arrayanesGithubToken') || '';
 githubTokenInput.addEventListener('input', () => {
-  sessionStorage.setItem('arrayanesGithubToken', githubTokenInput.value.trim());
+  localStorage.setItem('arrayanesGithubToken', githubTokenInput.value.trim());
 });
 
 function utf8ToBase64(str){
